@@ -1,36 +1,31 @@
 package com.executor.executor.component;
 
-import com.executor.executor.config.RabbitConfiguration;
-import com.executor.executor.entity.Order;
-import com.executor.executor.service.WriteData;
-import org.apache.log4j.Logger;
+import com.executor.executor.entity.Message;
+import com.executor.executor.service.Writer;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @EnableRabbit
 @Component
 public class RabbitMqListener {
 
-    Logger logger = Logger.getLogger(RabbitMqListener.class);
+    Logger logger =  LogManager.getLogger();
 
     @Autowired
-    private WriteData writeData;
+    private Writer writer;
 
     @RabbitListener(queues = "#{queue.getName()}")
-    public void receiveMessage(Order order) throws InterruptedException {
+    public void receiveMessage(Message message) throws InterruptedException {
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
-        Date date = new Date();
+        logger.info("receiveMessage");
 
-        logger.info("receiveMessage :" + dateFormat.format(date));
-
-        writeData.write(order);
+        writer.writeData(message);
 
         Thread.sleep(3000);
 

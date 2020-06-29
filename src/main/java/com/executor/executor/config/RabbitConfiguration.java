@@ -1,6 +1,8 @@
 package com.executor.executor.config;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -10,14 +12,14 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.lang.Nullable;
 import javax.annotation.PostConstruct;
 
 
 @Configuration
 public class RabbitConfiguration {
 
-     Logger logger = Logger.getLogger(RabbitConfiguration.class);
+    Logger logger =  LogManager.getLogger();
 
 
     @Value("${rabbitmq.exchange}")
@@ -32,9 +34,11 @@ public class RabbitConfiguration {
     @Value("${rabbitmq.host}")
     private String rabbitHost;
 
+    @Nullable
     @Value("${rabbitmq.user}")
     private String user;
 
+    @Nullable
     @Value("${rabbitmq.password}")
     private String password;
 
@@ -44,8 +48,8 @@ public class RabbitConfiguration {
         CachingConnectionFactory connectionFactory =
                 new CachingConnectionFactory(rabbitHost);
 
-//        connectionFactory.setUsername(user);
-//        connectionFactory.setPassword(password);
+       connectionFactory.setUsername(user);
+       connectionFactory.setPassword(password);
 
         return connectionFactory;
     }
@@ -56,7 +60,6 @@ public class RabbitConfiguration {
         return rabbitAdmin;
     }
 
-    //объявляем очередь
     @Bean
     public Queue queue() {
         return new Queue(queue);
