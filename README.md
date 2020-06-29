@@ -8,7 +8,7 @@ ADD target/application.properties application.properties
 ADD target/executor-0.0.1-SNAPSHOT.jar executor-0.0.1-SNAPSHOT.jar  
 ENTRYPOINT ["java","-jar","executor.jar"]
 
-**Link** :  docker push denisdugin/executor:latest
+**Link** :  docker push denisdugin/executor:1
 
 
 **Dockerfile for mylti start Executors :** 
