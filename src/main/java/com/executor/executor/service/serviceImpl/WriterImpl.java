@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 @Service
 public class WriterImpl implements Writer {
 
-    Logger logger =  LogManager.getLogger();
+    private Logger logger =  LogManager.getLogger();
 
     @Value("${rabbitmq.routing.key}")
     private String id;

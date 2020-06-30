@@ -19,8 +19,7 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class RabbitConfiguration {
 
-    Logger logger =  LogManager.getLogger();
-
+    private Logger logger =  LogManager.getLogger();
 
     @Value("${rabbitmq.exchange}")
     private String exchange;
