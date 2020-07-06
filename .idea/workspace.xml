@@ -3,22 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22adaed6-8bbb-4dd4-b893-63910e254f9e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application10.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application10.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application2.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application3.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application3.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application4.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application4.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application5.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application5.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application6.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application6.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application7.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application7.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application8.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application8.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/application9.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application9.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/executor.jar" beforeDir="false" afterPath="$PROJECT_DIR$/save/executor.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/config/RabbitConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/config/RabbitConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/Writer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/serviceImpl/WriterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/serviceImpl/WriterImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +106,7 @@
       <workItem from="1593656201708" duration="784000" />
       <workItem from="1593848787899" duration="2627000" />
       <workItem from="1593922650317" duration="24745000" />
-      <workItem from="1594004850755" duration="10103000" />
+      <workItem from="1594004850755" duration="11511000" />
     </task>
     <servers />
   </component>
