@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,11 +24,20 @@ public class RabbitConfiguration {
     @Value("${rabbitmq.exchange}")
     private String exchange;
 
+    @Value("${rabbitmq.deadLetterExchange}")
+    private String deadLetterExchange;
+
     @Value("${rabbitmq.queue}")
     private String queue;
 
+    @Value("${rabbitmq.deadLetterQueue}")
+    private String deadLetterQueue;
+
     @Value("${rabbitmq.routing.key}")
     private String routingKey;
+
+    @Value("${rabbitmq.routing.deadLetter}")
+    private String routingDeadLetter;
 
     @Value("${rabbitmq.host}")
     private String rabbitHost;
@@ -41,46 +50,6 @@ public class RabbitConfiguration {
     @Value("${rabbitmq.password}")
     private String password;
 
-    // настраиваем соединение с RabbitMQ
-    @Bean
-    public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory =
-                new CachingConnectionFactory(rabbitHost);
-
-       connectionFactory.setUsername(user);
-       connectionFactory.setPassword(password);
-
-        return connectionFactory;
-    }
-
-    @Bean
-    public AmqpAdmin amqpAdmin() {
-        RabbitAdmin rabbitAdmin = new RabbitAdmin(connectionFactory());
-        return rabbitAdmin;
-    }
-
-    @Bean
-    public Queue queue() {
-        return new Queue(queue);
-    }
-
-
-    @Bean
-    public DirectExchange directExchange(){
-        return new DirectExchange(exchange);
-    }
-
-
-    @Bean
-    public Binding errorBinding1() {
-        return BindingBuilder.bind(queue()).to(directExchange()).with(routingKey);  // привязываем routing key к exchange
-    }
-
-
-    @Bean
-    public MessageConverter jsonMessageConverter(){
-        return new Jackson2JsonMessageConverter();
-    }
 
 
     @PostConstruct
@@ -89,5 +58,61 @@ public class RabbitConfiguration {
         logger.info("queue : " + queue);
         logger.info("routingKey : " + routingKey);
     }
+
+
+    @Bean
+    public ConnectionFactory connectionFactory() {
+        CachingConnectionFactory connectionFactory =
+                new CachingConnectionFactory(rabbitHost);
+
+        connectionFactory.setUsername(user);
+        connectionFactory.setPassword(password);
+
+        return connectionFactory;
+    }
+
+    @Bean
+    public DirectExchange deadLetterExchange() {
+        return new DirectExchange(deadLetterExchange);
+    }
+
+    @Bean
+    public Queue deadLetterQueue() {
+        return QueueBuilder.durable(deadLetterQueue).build();
+    }
+
+    @Bean
+    public Queue queue() {
+        return QueueBuilder.durable(queue).withArgument("x-dead-letter-exchange", deadLetterExchange)
+                .withArgument("x-dead-letter-routing-key", routingDeadLetter).build();
+    }
+
+    @Bean
+    public DirectExchange exchange() {
+        return new DirectExchange(exchange);
+    }
+
+    @Bean
+    public Binding DLQbinding(Queue deadLetterQueue, DirectExchange deadLetterExchange) {
+        return BindingBuilder.bind(deadLetterQueue).to(deadLetterExchange).with(routingDeadLetter);
+    }
+
+
+    @Bean
+    public Binding binding(Queue queue, DirectExchange exchange) {
+        return BindingBuilder.bind(queue).to(exchange).with(routingKey);
+    }
+
+
+    @Bean
+    public MessageConverter jsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate() {
+        return new RabbitTemplate(connectionFactory());
+    }
+
 
 }

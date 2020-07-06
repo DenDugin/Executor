@@ -25,27 +25,21 @@ public class WriterImpl implements Writer {
     @Value("${rabbitmq.routing.key}")
     private String id;
 
-    public void writeData(Message message) {
+    public void writeData(Message message) throws IOException, JAXBException {
 
         logger.info("Get message from dispatcher : " + message.getDispatched_id());
         logger.info("Target : " + message.getTarget_id());
         logger.info("dispatched : " + message.getDispatched_id());
         logger.info("Data : " + message.getData());
 
-        try {
+        Files.createDirectories( Paths.get( System.getProperty("user.dir")+"/"+id ) );
+        File file = new File(System.getProperty("user.dir")+"/"+id+"/"+message.getClient_id()+".xml");
 
-            Files.createDirectories( Paths.get( System.getProperty("user.dir")+"/"+id ) );
-            File file = new File(System.getProperty("user.dir")+"/"+id+"/"+message.getClient_id()+".xml");
+        JAXBContext jaxbContext = JAXBContext.newInstance(Message.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(Message.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            jaxbMarshaller.marshal(message, file);
-
-        } catch (JAXBException | IOException e) {
-            logger.error(e.getMessage(),e);
-        }
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        jaxbMarshaller.marshal(message, file);
 
     }
 

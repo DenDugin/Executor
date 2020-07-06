@@ -15,22 +15,34 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitMqListener {
 
-    Logger logger =  LogManager.getLogger();
+    private Logger logger =  LogManager.getLogger();
 
     @Autowired
     private Writer writer;
 
+
     @RabbitListener(queues = "#{queue.getName()}")
-    public void receiveMessage(Message message) throws InterruptedException {
+    public void receiveMessage(Message message) throws Exception {
 
         logger.info("receiveMessage");
-
         writer.writeData(message);
-
         Thread.sleep(3000);
-
-        // return "Done";
     }
+
+
+    @RabbitListener(queues = "#{queue.getName()}", returnExceptions = "false")
+    public Boolean receiveMessageAndResponse(Message message) throws Exception {
+
+        logger.info("receiveMessage");
+        writer.writeData(message);
+        Thread.sleep(3000);
+        return true;
+    }
+
+
+
+
+
 
 
 }

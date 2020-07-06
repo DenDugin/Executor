@@ -14,8 +14,11 @@
       <change beforePath="$PROJECT_DIR$/save/application8.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application8.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save/application9.properties" beforeDir="false" afterPath="$PROJECT_DIR$/save/application9.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save/executor.jar" beforeDir="false" afterPath="$PROJECT_DIR$/save/executor.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/config/RabbitConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/config/RabbitConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/Writer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/Writer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/serviceImpl/WriterImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/service/serviceImpl/WriterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +30,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -69,8 +73,8 @@
     <option name="myCommands">
       <command value="mvn cl" />
       <command value="mvn ins" />
-      <command value="mvn install" />
       <command value="mvn clean" />
+      <command value="mvn install" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -114,6 +118,10 @@
       <workItem from="1593406252014" duration="11668000" />
       <workItem from="1593419027504" duration="50000" />
       <workItem from="1593472209548" duration="4621000" />
+      <workItem from="1593656201708" duration="784000" />
+      <workItem from="1593848787899" duration="2627000" />
+      <workItem from="1593922650317" duration="24745000" />
+      <workItem from="1594004850755" duration="10103000" />
     </task>
     <servers />
   </component>
@@ -138,23 +146,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/service/serviceImpl/WriterImpl.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="6" />
+          <line>34</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
