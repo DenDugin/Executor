@@ -15,9 +15,9 @@ ENTRYPOINT ["java","-jar","executor.jar"]
 FROM openjdk:8-jdk-alpine  
 EXPOSE 8080  
 ADD target/application.properties application.properties  
-ADD target/application.properties2 application.properties2
+ADD target/application.properties2 application.properties2  
 ADD target/application.properties3 application.properties3  
-ADD target/executor-0.0.1-SNAPSHOT.jar executor.jar
+ADD target/executor-0.0.1-SNAPSHOT.jar executor.jar  
 ADD start.sh start.sh  
 CMD ["sh", "start.sh"]
 
@@ -25,13 +25,25 @@ CMD ["sh", "start.sh"]
 
 server.port=8081
 
-rabbitmq.host=rabbitmq
-rabbitmq.exchange=exchange
-rabbitmq.queue=query-1
-rabbitmq.routing.key=id_1
-# Docker rabbitmq
-rabbitmq.user=user
-rabbitmq.password=bitnami
+rabbitmq.host=localhost  
+rabbitmq.exchange=exchange  
+rabbitmq.deadLetterExchange=deadLetterExchange  
+rabbitmq.queue=query-1  
+rabbitmq.deadLetterQueue=deadLetterQueue  
+rabbitmq.routing.key=id_1  
+rabbitmq.routing.deadLetter=deadLetter  
+
+
+spring.rabbitmq.listener.simple.retry.enabled=true  
+spring.rabbitmq.listener.simple.retry.initial-interval=1s  
+spring.rabbitmq.listener.simple.retry.max-attempts=2  
+spring.rabbitmq.listener.simple.retry.max-interval=3s  
+spring.rabbitmq.listener.simple.retry.multiplier=2  
+
+
+# Docker  
+rabbitmq.user=guest  
+rabbitmq.password=guest  
 
 
 
