@@ -21,6 +21,7 @@ ADD target/executor-0.0.1-SNAPSHOT.jar executor.jar
 ADD start.sh start.sh  
 CMD ["sh", "start.sh"]
 
+
 **Application.properties:** 
 
 server.port=8081
@@ -41,7 +42,6 @@ spring.rabbitmq.listener.simple.retry.max-interval=3s
 spring.rabbitmq.listener.simple.retry.multiplier=2  
 
 
-# Docker  
 rabbitmq.user=guest  
 rabbitmq.password=guest  
 
@@ -59,40 +59,41 @@ networks:
 
 services:
 
-  rabbitmq:
-    image: 'bitnami/rabbitmq:latest'
-    networks:
-      - app-tier
-  disp:
-     container_name: dispatcher
-     build: ./Dispatcher
-     ports:
-      - "8080:8080"
-     image: dispatcher
-     networks:
-      - app-tier
+  rabbitmq:  
+    image: 'bitnami/rabbitmq:latest'  
+    networks:  
+      - app-tier  
+	  
+  disp:  
+     container_name: dispatcher  
+     build: ./Dispatcher  
+     ports:  
+      - "8080:8080"  
+     image: dispatcher  
+     networks:  
+      - app-tier  
 
 
-  java:
-     container_name: executor
-     volumes:
-      - ./Save/id_1:/id_1
-     build: ./Executor
-     ports:
-      - "8081:8081"
-     image: executor
-     networks:
-      - app-tier
+  java:  
+     container_name: executor  
+     volumes:  
+      - ./Save/id_1:/id_1  
+     build: ./Executor  
+     ports:  
+      - "8081:8081"  
+     image: executor  
+     networks:  
+      - app-tier  
 
-  java2:
-     container_name: executor2
-     volumes:
-      - ./Save/id_2:/id_2
-     build: ./Executor2
-     ports:
-      - "8082:8082"
-     image: executor2
-     networks:
+  java2:  
+     container_name: executor2  
+     volumes:  
+      - ./Save/id_2:/id_2  
+     build: ./Executor2  
+     ports:  
+      - "8082:8082"  
+     image: executor2  
+     networks:  
       - app-tier
 
 
