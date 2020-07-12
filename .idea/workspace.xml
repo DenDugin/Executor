@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="22adaed6-8bbb-4dd4-b893-63910e254f9e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/save/executor.jar" beforeDir="false" afterPath="$PROJECT_DIR$/save/executor.jar" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +58,8 @@
     <option name="myCommands">
       <command value="mvn cl" />
       <command value="mvn ins" />
-      <command value="mvn clean" />
       <command value="mvn install" />
+      <command value="mvn clean" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -111,7 +110,9 @@
       <workItem from="1594077460637" duration="2452000" />
       <workItem from="1594144172185" duration="438000" />
       <workItem from="1594203692940" duration="4667000" />
-      <workItem from="1594228873627" duration="13000" />
+      <workItem from="1594228873627" duration="366000" />
+      <workItem from="1594439414035" duration="4093000" />
+      <workItem from="1594525015154" duration="908000" />
     </task>
     <servers />
   </component>
@@ -135,11 +136,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/service/serviceImpl/WriterImpl.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java</url>
           <line>26</line>
           <option name="timeStamp" value="28" />
@@ -148,6 +144,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/component/RabbitMqListener.java</url>
           <line>35</line>
           <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/executor/executor/config/RabbitConfiguration.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

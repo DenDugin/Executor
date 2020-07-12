@@ -4,20 +4,24 @@
 
 FROM openjdk:8-jdk-alpine  
 EXPOSE 8080  
-ADD target/application.properties application.properties  
-ADD target/executor-0.0.1-SNAPSHOT.jar executor-0.0.1-SNAPSHOT.jar  
+ADD application.properties application.properties  
+ADD executor.jar executor.jar  
 ENTRYPOINT ["java","-jar","executor.jar"]
 
-**Link dockerhub** :  docker push denisdugin/executor:3
+**Link dockerhub** :  docker push denisdugin/executor:latest
+
+Для добавления исполнителя необходимо использовать команду :  
+
+docker run -d -v /home/Save/id_2:/id_2 --env RABBITMQ_HOST=rabbitmq --env RABBITMQ_QUEUE=query-2 --env RABBITMQ_ROUTING_KEY=id_2 --name executor2 --network taxi20_app-tier denisdugin/executor
 
 
 **Dockerfile for mylti start Executors :**   
 FROM openjdk:8-jdk-alpine  
 EXPOSE 8080  
-ADD target/application.properties application.properties  
-ADD target/application.properties2 application.properties2  
-ADD target/application.properties3 application.properties3  
-ADD target/executor-0.0.1-SNAPSHOT.jar executor.jar  
+ADD application.properties application.properties  
+ADD application.properties2 application.properties2  
+ADD application.properties3 application.properties3  
+ADD executor.jar executor.jar  
 ADD start.sh start.sh  
 CMD ["sh", "start.sh"]
 
@@ -49,51 +53,48 @@ rabbitmq.password=guest
 
 **docker-compose.yml**
 
-version: '3.3'
+version: '3.3'  
 
-services:
+services:  
 
-networks:
-  app-tier:
-    driver: bridge
+networks:  
+  app-tier:  
+    driver: bridge  
 
-services:
-
+services:  
   rabbitmq:  
-    image: 'bitnami/rabbitmq:latest'  
+    container_name: rabbit  
+    image: 'denisdugin/myrabbitmq:latest'  
     networks:  
       - app-tier  
-	  
+
   disp:  
      container_name: dispatcher  
      build: ./Dispatcher  
+     depends_on:  
+        - rabbitmq  
      ports:  
       - "8080:8080"  
      image: dispatcher  
+     container_name: dispatcher  
      networks:  
       - app-tier  
 
 
-  java:  
+  exec:  
      container_name: executor  
      volumes:  
       - ./Save/id_1:/id_1  
      build: ./Executor  
+     depends_on:  
+        - rabbitmq  
      ports:  
       - "8081:8081"  
      image: executor  
+     container_name: executor  
      networks:  
       - app-tier  
-
-  java2:  
-     container_name: executor2  
-     volumes:  
-      - ./Save/id_2:/id_2  
-     build: ./Executor2  
-     ports:  
-      - "8082:8082"  
-     image: executor2  
-     networks:  
-      - app-tier
-
-
+	  
+	  .  
+	  .    
+	  .  
