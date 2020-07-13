@@ -10,10 +10,13 @@ ENTRYPOINT ["java","-jar","executor.jar"]
 
 **Link dockerhub** :  docker push denisdugin/executor:latest
 
+____
+
 Для добавления исполнителя необходимо использовать команду :  
 
 docker run -d -v /home/Save/id_2:/id_2 --env RABBITMQ_HOST=rabbitmq --env RABBITMQ_QUEUE=query-2 --env RABBITMQ_ROUTING_KEY=id_2 --name executor2 --network taxi20_app-tier denisdugin/executor
 
+____
 
 **Dockerfile for mylti start Executors :**   
 FROM openjdk:8-jdk-alpine  
