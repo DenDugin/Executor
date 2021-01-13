@@ -30,14 +30,14 @@ public class RabbitMqListener {
     }
 
 
-    @RabbitListener(queues = "#{queue.getName()}", returnExceptions = "false")
-    public Boolean receiveMessageAndResponse(Message message) throws Exception {
-
-        logger.info("receiveMessage");
-        writer.writeData(message);
-        Thread.sleep(3000);
-        return true;
-    }
+//    @RabbitListener(queues = "#{queue.getName()}", returnExceptions = "false")
+//    public Boolean receiveMessageAndResponse(Message message) throws Exception {
+//
+//        logger.info("receiveMessage");
+//        writer.writeData(message);
+//        Thread.sleep(3000);
+//        return true;
+//    }
 
 
 
